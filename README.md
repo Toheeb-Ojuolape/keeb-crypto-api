@@ -7,7 +7,7 @@
 
 # Description
 
-API to get real time crypto currencies prices, marketCap, dataSupply, volume, negativeChange. It is free to use. As a summary, it uses:
+API to get real time crypto currency price, market cap, data supply, volume, negative change. It is free to use. As a summary, it uses:
 
 * Node.JS
 * Heroku
