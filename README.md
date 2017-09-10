@@ -1,13 +1,8 @@
-# Welcome to CryptoCurrency API
-
-## List of API
-
-* [To get price of all currencies](https://cryptocurrency-api.herokuapp.com/ticker)
-* Coming Soon
+# Welcome to CryptoCurrency API (work-in-progress 👷🔧️👷‍♀️⛏)
 
 # Description
 
-API to get real time crypto currency price, market cap, data supply, volume, negative change. It is free to use. As a summary, it uses:
+API to get real time crypto currency price, market cap, data supply, volume, negative change. It is free to use. It is still in its early stages of development and currently only contains single API's. It is under heavy development. As a summary, it uses:
 
 * Node.JS
 * Heroku
@@ -15,6 +10,11 @@ API to get real time crypto currency price, market cap, data supply, volume, neg
 * Gulp
 * Nodemon
 * cheerio
+
+## List of API's
+
+* [To get price of all currencies](https://cryptocurrency-api.herokuapp.com/ticker)
+* Coming Soon
 
 # Contributions
 
