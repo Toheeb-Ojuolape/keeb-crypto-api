@@ -2,7 +2,7 @@
 
 ## List of API
 
-* [API to get price of all currencies](https://cryptocurrency-api.herokuapp.com/ticker)
+* [To get price of all currencies](https://cryptocurrency-api.herokuapp.com/ticker)
 * Coming Soon
 
 # Description
