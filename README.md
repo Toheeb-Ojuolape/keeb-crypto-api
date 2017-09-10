@@ -1,6 +1,9 @@
 # Welcome to CryptoCurrency API
 
+## List of API
+
 * [API to get price of all currencies](https://cryptocurrency-api.herokuapp.com/ticker)
+* Coming Soon
 
 # Description
 
