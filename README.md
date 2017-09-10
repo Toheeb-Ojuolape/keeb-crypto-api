@@ -11,10 +11,10 @@ API to get real time crypto currencies prices, marketCap, dataSupply, volume, ne
 
 * Node.JS
 * Heroku
+* Express
 * Gulp
 * Nodemon
 * cheerio
-* request
 
 # Contributions
 
