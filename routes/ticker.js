@@ -6,7 +6,7 @@ const cheerio = require("cheerio");
 const baseUrl = "https://coinmarketcap.com";
 var currencyList = [];
 
-/** Return all coins price */
+/** API to get all currency price */
 router.get("/:ticker?", function(req, res, next) {
   request(baseUrl, function(error, response, body) {
     // if no error and http response code is 200
@@ -56,13 +56,6 @@ router.get("/:ticker?", function(req, res, next) {
           .replace(/\r?\n|\r/g, " ")
           .trim();
 
-        var sparkLine = $(this)
-          .find("td")
-          .eq(7)
-          .text()
-          .replace(/\r?\n|\r/g, " ")
-          .trim();
-
         // first item is empty so lets not push it into an array
         if (currencyName !== "") {
           const currencyItem = {
@@ -71,8 +64,7 @@ router.get("/:ticker?", function(req, res, next) {
             price: price,
             dataSupply: dataSupply,
             volume: volume,
-            negativeChange: negativeChange,
-            sparkLine: sparkLine
+            negativeChange: negativeChange
           };
 
           currencyList.push(currencyItem);
