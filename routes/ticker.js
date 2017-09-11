@@ -1,19 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const request = require("request");
+var rp = require("request-promise");
 const cheerio = require("cheerio");
 const { rollbar } = require("../config/rollbar");
 const { baseUrl } = require("../config/settings");
-var currencyList = [];
 
 /** API to get all currency price */
 router.get("/:ticker?", function(req, res, next) {
-  console.log("------------------------------------");
-  console.log(baseUrl);
-  console.log("------------------------------------");
-  request(baseUrl, function(error, response, body) {
-    // if no error and http response code is 200
-    if (!error && response.statusCode == 200) {
+  var currencyList = [];
+
+  // it can be null as ticker is optional parameter
+  let reqCurrencyName = req.params.ticker;
+
+  rp(baseUrl)
+    .then(body => {
       const $ = cheerio.load(body);
       $("tr").each(function name(i, elem) {
         // currency name
@@ -67,22 +67,39 @@ router.get("/:ticker?", function(req, res, next) {
 
         // first item is empty in response so lets not push it into an array
         if (currencyName !== "") {
-          const currencyItem = {
-            currencyName: currencyName,
-            marketCap: marketCap,
-            price: price,
-            dataSupply: dataSupply,
-            volume: volume,
-            negativeChange: negativeChange
-          };
+          if (reqCurrencyName !== undefined) {
+            if (currencyName === reqCurrencyName) {
+              const currencyItem = {
+                currencyName: currencyName,
+                marketCap: marketCap,
+                price: price,
+                dataSupply: dataSupply,
+                volume: volume,
+                negativeChange: negativeChange
+              };
 
-          currencyList.push(currencyItem);
+              currencyList.push(currencyItem);
+            }
+          } else {
+            const currencyItem = {
+              currencyName: currencyName,
+              marketCap: marketCap,
+              price: price,
+              dataSupply: dataSupply,
+              volume: volume,
+              negativeChange: negativeChange
+            };
+
+            currencyList.push(currencyItem);
+          }
         }
       });
-    } else rollbar.log(error);
-  });
-
-  res.send(currencyList);
+      res.send(currencyList);
+    })
+    .catch(err => {
+      rollbar.log(err);
+      res.send({ error: err });
+    });
 });
 
 module.exports = router;

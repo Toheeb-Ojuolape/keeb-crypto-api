@@ -12,7 +12,7 @@ API to get real time crypto currency price, market cap, data supply, volume, neg
 ## List of API's
 
 * [To get price of all currencies](https://cryptocurrency-api.herokuapp.com/ticker)
-* Coming Soon
+* [To get price of single currency](https://cryptocurrency-api.herokuapp.com/ticker/Bitcoin)
 
 # Contributions
 
