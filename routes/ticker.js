@@ -7,7 +7,7 @@ const CircularJSON = require("circular-json");
 const { rollbar } = require("../config/rollbar");
 const { baseUrl } = require("../config/settings");
 
-/** API to get all currency price */
+/** API to get all and selected currency price */
 router.get("/:ticker?", function(req, res, next) {
   // it can be null as ticker is optional parameter
   let reqCurrencyName = req.params.ticker;
