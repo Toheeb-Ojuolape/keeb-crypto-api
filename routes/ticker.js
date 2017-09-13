@@ -24,10 +24,13 @@ router.get("/:ticker?", function(req, res, next) {
           .text()
           .replace(/\r?\n|\r/g, " ")
           .trim();
+
       const currencies = $("tr")
         .filter((i, e) => {
-          // Filter rows with no currency name
-          return Boolean(getField(e, 1));
+          if (reqCurrencyName) {
+            // Filter row with requested current name
+            if (reqCurrencyName === getField(e, 1)) return true;
+          } else return Boolean(getField(e, 1)); // Filter rows with no currency name
         })
         .map((i, e) => ({
           // Construct the object
